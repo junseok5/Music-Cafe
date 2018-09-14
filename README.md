@@ -21,7 +21,5 @@ Users can add a play list and music, so other users can listen added music.
 ## Getting Started
 ## Installing
 <pre>
-  <code>
     $ git clone https://github.com/junseok5/Music-Cafe 
-  </code>
 </pre>
