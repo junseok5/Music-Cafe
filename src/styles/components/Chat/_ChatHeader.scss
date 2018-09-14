@@ -1,0 +1,13 @@
+.chat-header {
+    display: flex;
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    user-select: none;
+
+    background: rgba(216, 216, 216, 0.1);
+}

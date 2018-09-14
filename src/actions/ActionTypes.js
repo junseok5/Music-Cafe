@@ -1,0 +1,7 @@
+// youtube video
+export const SET_CURRENT_VIDEOID = "SET_CURRENT_VIDEOID"
+export const SET_SELECTEDPLKEY = "SET_SELECTEDPLKEY"
+export const SET_SELECTEDMLKEY = "SET_SELECTEDMLKEY"
+
+// chat
+export const SET_CHAT_MESSAGE = "SET_CHAT_MESSAGE"
