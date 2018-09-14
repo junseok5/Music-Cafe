@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-// import styles from './PlayList.scss'
-// import classNames from 'classnames/bind'
 import cx from 'classnames'
 import PlayInfo from './PlayInfo'
 import MusicInfo from './MusicInfo'
@@ -8,34 +6,33 @@ import MusicInfo from './MusicInfo'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
 
-// const cx = classNames.bind(styles)
-
 class PlayList extends Component {
 
     constructor (props) {
         super(props)
-        this.state = {
-            selectedPLKey: 0,
-            selectedMLKey: 0
-        }
 
         this.selectPlayList = this.selectPlayList.bind(this)
         this.selectMusicList = this.selectMusicList.bind(this)
     }
 
     selectPlayList (key) {
+        this.props.setPrevPLKey(this.props.selectedPLKey)
         this.props.setSelectedPLKey(key)
     }
 
     selectMusicList (key) {
         const videoId = this.props.playList[this.props.selectedPLKey].musicList[key].videoId
 
-        this.props.setSelectedMLKey(key)
+        this.props.setSelectedKey(-1, this.props.prevPLKey)
+        this.props.setSelectedKey(key, this.props.selectedPLKey)
         this.props.setCurrentVideoId(videoId)
+        this.forceUpdate()
     }
 
     render () {
-        const { playList, selectedPLKey, selectedMLKey } = this.props
+        const { playList, selectedPLKey } = this.props
+        const selectedMLKey = playList[selectedPLKey].selectedKey
+        console.log(selectedMLKey)
 
         const mapToPlayList = (data) => {
             return data.map((playList, i) => {
@@ -85,6 +82,7 @@ class PlayList extends Component {
 const mapStateToProps = (state) => {
     return {
         playList: state.youtube_video.playList,
+        prevPLKey: state.youtube_video.prevPLKey,
         selectedPLKey: state.youtube_video.selectedPLKey,
         selectedMLKey: state.youtube_video.selectedMLKey
     }
@@ -93,8 +91,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setCurrentVideoId: (videoId) => { dispatch(actions.setCurrentVideoId(videoId)) },
+        setPrevPLKey: (key) => { dispatch(actions.setPrevPLKey(key)) },
         setSelectedPLKey: (key) => { dispatch(actions.setSelectedPLKey(key)) },
-        setSelectedMLKey: (key) => { dispatch(actions.setSelectedMLKey(key)) }
+        setSelectedMLKey: (key) => { dispatch(actions.setSelectedMLKey(key)) },
+        setSelectedKey: (key, target) => { dispatch(actions.setSelectedKey(key, target)) }
     }
 }
 

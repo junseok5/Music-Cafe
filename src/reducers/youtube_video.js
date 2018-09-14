@@ -1,12 +1,14 @@
 import * as types from '../actions/ActionTypes'
 
 const initialState = {
+    prevPLKey: -1,
     selectedPLKey: 0,
     selectedMLKey: 0,
     currentVideoId: 'TNWMZIf7eSg',
     playList: [
         {
             title: '최신곡',
+            selectedKey: 0,
             musicList: [
                 {
                     title: '사이렌',
@@ -37,6 +39,7 @@ const initialState = {
         },
         {
             title: 'M.C the max',
+            selectedKey: -1,
             musicList: [
                 {
                     title: 'My Way',
@@ -69,6 +72,11 @@ function youtube_video (state = initialState, action) {
             ...state,
             currentVideoId: action.videoId
         }
+    } else if (action.type === types.SET_PREV_PLKEY) {
+        return {
+            ...state,
+            prevPLKey: action.key
+        }
     } else if (action.type === types.SET_SELECTEDPLKEY) {
         return {
             ...state,
@@ -78,6 +86,14 @@ function youtube_video (state = initialState, action) {
         return {
             ...state,
             selectedMLKey: action.key
+        }
+    } else if (action.type === types.SET_SELECTED_KEY) {
+        state.playList[action.target] = {
+            ...state.playList[action.target],
+            selectedKey: action.key
+        }
+        return {
+            ...state,
         }
     } else {
         return state
