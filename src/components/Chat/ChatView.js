@@ -8,6 +8,18 @@ import * as actions from '../../actions'
 class ChatView extends Component {
     constructor(props) {
         super(props);
+
+        this.scrollToBottom = this.scrollToBottom.bind(this)
+    }
+
+    componentDidUpdate (prevProps) {
+        if (prevProps.chatData.length !== this.props.chatData.length) {
+            this.scrollToBottom()
+        }
+    }
+
+    scrollToBottom () {
+        this.element.scrollTop = this.element.scrollHeight
     }
 
     render() {
@@ -23,7 +35,7 @@ class ChatView extends Component {
         const { chatData } = this.props
 
         return (
-            <div className={cx('chat-view')}>
+            <div className={cx('chat-view')} ref={(ref) => {this.element = ref}}>
               <ul>
                   { mapToChatData(chatData) }
               </ul>

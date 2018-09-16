@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import PlayInfo from './PlayInfo'
 import MusicInfo from './MusicInfo'
+import Modal from 'react-responsive-modal'
 
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
@@ -10,9 +11,14 @@ class PlayList extends Component {
 
     constructor (props) {
         super(props)
+        this.state = {
+            openPL: false,
+            openML: false
+        }
 
         this.selectPlayList = this.selectPlayList.bind(this)
         this.selectMusicList = this.selectMusicList.bind(this)
+        this.handleModal = this.handleModal.bind(this)
     }
 
     selectPlayList (key) {
@@ -27,6 +33,10 @@ class PlayList extends Component {
         this.props.setSelectedKey(key, this.props.selectedPLKey)
         this.props.setCurrentVideoId(videoId)
         this.forceUpdate()
+    }
+
+    handleModal (val) {
+        this.setState({ openPL: val })
     }
 
     render () {
@@ -61,16 +71,36 @@ class PlayList extends Component {
             })
         }
 
+        const { openPL, openML } = this.state
+
         return (
             <div className={cx('play-list-wrapper')}>
+                <Modal open={openPL} onClose={() => { this.handleModal(false) }} center>
+                    <div className={cx('modal')}>
+                        <h1>Hello</h1>
+                    </div>
+                </Modal>
+                <Modal open={openML} onClose={() => { this.handleModal(false) }} center>
+                    <h1>good</h1>
+                </Modal>
                 <div className={cx('pl-header')}>
                     Play List
                 </div>
                 <div className={cx('pl-content')}>
                     <ul className={cx('play-list')}>
+                        <li className={cx('add_new_list')} onClick={() => { this.handleModal(true) }}>
+                            <span>
+                                + New
+                            </span>
+                        </li>
                         { mapToPlayList(playList) }
                     </ul>
                     <ul className={cx('music-list')}>
+                         <li className={cx('add_new_list')} onClick={() => { this.handleModal(true) }}>
+                            <span>
+                                + New
+                            </span>
+                        </li>
                         { mapToMusicList(playList[selectedPLKey].musicList) }
                     </ul>
                 </div>
