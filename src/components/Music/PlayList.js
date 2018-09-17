@@ -28,6 +28,12 @@ class PlayList extends Component {
         this.handleMKeyPress = this.handleMKeyPress.bind(this)
     }
 
+    componentDidUpdate (prevProps, prevState) {
+        if (prevProps.openModal !== this.props.openModal) {
+            this.modal.focus()
+        }
+    }
+
     selectPlayList (key) {
         this.props.setPrevPLKey(this.props.selectedPLKey)
         this.props.setSelectedPLKey(key)
@@ -141,6 +147,7 @@ class PlayList extends Component {
                     <input
                         type="text"
                         value={playListTitle}
+                        ref={(ref) => {this.modal = ref}}
                         onChange={this.handlePlayList}
                         onKeyPress={this.handlePLKeyPress}
                         placeholder="play list name"
@@ -160,6 +167,7 @@ class PlayList extends Component {
                     <input
                         type="text"
                         value={videoId}
+                        ref={(ref) => {this.modal = ref}}
                         onChange={this.handleMusicVideoId}
                         placeholder="youtube video id"
                     />
