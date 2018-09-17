@@ -1,6 +1,12 @@
 import * as types from '../actions/ActionTypes'
 
 const initialState = {
+    openModal: false,
+    modeModal: -1,
+    playListTitle: '',
+    videoId: '',
+    musicTitle: '',
+    musicSinger: '',
     prevPLKey: -1,
     selectedPLKey: 0,
     selectedMLKey: 0,
@@ -94,6 +100,62 @@ function youtube_video (state = initialState, action) {
         }
         return {
             ...state,
+        }
+    } else if (action.type === types.CONTROL_MODAL) {
+        if (action.modeModal === undefined) {
+            return {
+                ...state,
+                openModal: action.openModal
+            }
+        } else {
+            return {
+                ...state,
+                openModal: action.openModal,
+                modeModal: action.modeModal
+            }
+        }
+    } else if (action.type === types.ADD_PLAY_LIST) {
+        return {
+            ...state,
+            playList: [
+                ...state.playList,
+                {
+                    title: action.playList,
+                    selectedKey: -1,
+                    musicList: []
+                }
+            ]
+        }
+    } else if (action.type === types.ADD_MUSIC) {
+        state.playList[state.selectedPLKey] = {
+            ...state.playList[state.selectedPLKey],
+            musicList: [
+                ...state.playList[state.selectedPLKey].musicList,
+                action.music
+            ]
+        }
+        return {
+            ...state,
+        }
+    } else if (action.type === types.SET_PLAY_LIST_TITLE) {
+        return {
+            ...state,
+            playListTitle: action.title
+        }
+    } else if (action.type === types.SET_MUSIC_VIDEOID) {
+        return {
+            ...state,
+            videoId: action.videoId
+        }
+    } else if (action.type === types.SET_MUSIC_TITLE) {
+        return {
+            ...state,
+            musicTitle: action.title
+        }
+    } else if (action.type === types.SET_MUSIC_SINGER) {
+        return {
+            ...state,
+            musicSinger: action.singer
         }
     } else {
         return state

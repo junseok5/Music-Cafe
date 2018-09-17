@@ -1,3 +1,51 @@
 .modal {
     color: black;
+
+    h2 {
+        text-align: center;
+    }
+
+    .content {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 14px;
+        margin-bottom: 14px;
+
+        input {
+            font-size: 18px;
+            width: 240px;
+            height: 35px;
+            padding: 4px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            border: none;
+            border-bottom: 1px solid #4C4C4C;
+
+            &:focus {
+                outline: none;
+                border-bottom: 1.5px solid #4374D9;
+            }
+        }
+    }
+
+    .footer {
+        display: flex;
+        justify-content: center;
+
+        button {
+            width: 70px;
+            height: 30px;
+            margin-left: 8px;
+            margin-right: 8px;
+            background-color: #00b894;
+            border: none;
+            color: white;
+            cursor: pointer;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
 }

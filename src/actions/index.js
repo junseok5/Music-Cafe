@@ -38,6 +38,63 @@ export function setSelectedKey (key, target) {
     }
 }
 
+export function controlModal (openModal, modeModal = -1) {
+    if (modeModal === -1) {
+        return {
+            type: types.CONTROL_MODAL,
+            openModal
+        }
+    } else {
+        return {
+            type: types.CONTROL_MODAL,
+            openModal,
+            modeModal
+        }
+    }
+}
+
+export function addPlayList (playList) {
+    return {
+        type: types.ADD_PLAY_LIST,
+        playList
+    }
+}
+
+export function addMusic (music) {
+    return {
+        type: types.ADD_MUSIC,
+        music
+    }
+}
+
+export function setPlayListTitle (title) {
+    return {
+        type: types.SET_PLAY_LIST_TITLE,
+        title
+    }
+}
+
+export function setMusicVideoId (videoId) {
+    return {
+        type: types.SET_MUSIC_VIDEOID,
+        videoId
+    }
+}
+
+export function setMusicTitle (title) {
+    return {
+        type: types.SET_MUSIC_TITLE,
+        title
+    }
+}
+
+export function setMusicSinger (singer) {
+    return {
+        type: types.SET_MUSIC_SINGER,
+        singer
+    }
+}
+
 // chat
 
 export function setChatMessage (message) {
