@@ -16,7 +16,7 @@ class Player extends Component {
     }
 
     _onReady (event) {
-        console.log(event.target)
+        // console.log(event.target)
     }
 
     render () {
