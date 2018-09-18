@@ -43,4 +43,4 @@ $ npm start
 
 ## Contact
 
-if you any questions, leave an email to <vkehrkrl@gmail.com>
+if you any questions, leave an email to <vkehrkrl82@gmail.com>
