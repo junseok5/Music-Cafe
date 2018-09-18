@@ -1,8 +1,6 @@
 Music Cafe
 ==========
-> Music Cafe provides only view.
-> <supreme-drum.surge.sh/>
-
+[Music Cafe](supreme-drum.surge.sh) provides only view.
 
 ## About
 Music Cafe is chatting service with listening music.
@@ -27,18 +25,20 @@ But This project has been only made by react, not connected with server.
 ## Development
 For the development environment, you hvae to run two kind of scripts
 
-<pre>npm run dev</pre>
+<pre>
+    $ npm run dev
+</pre>
 
 ## Build and run
 
 To build, run following script.
 <pre>
-    npm run build
+    $ npm run build
 </pre>
 
 Then, run following command from this folder.
 <pre>
-    npm start
+    $ npm start
 </pre>
 
 ## Contact
